@@ -18,4 +18,8 @@ Usage:
 
     docker-compose pull && docker-compose up -d && open http://localhost:8000
 
+Monitor tor traffic:
+
+    docker-compose exec tor arm
+
 NOTE: for even more anonymity, run docker-compose with torsocks, too
