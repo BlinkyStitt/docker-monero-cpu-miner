@@ -12,6 +12,10 @@ Usage:
 
     cd docker-monero-cpu-miner
 
+    # edit docker-compose.yaml to include your settings
+    # TODO: use .env files?
+    $EDITOR docker-compose.yaml
+
     docker-compose pull && docker-compose up -d && open http://localhost:8000
 
 NOTE: for even more anonymity, run docker-compose with torsocks, too
