@@ -18,7 +18,7 @@ Usage:
 
     docker-compose pull && docker-compose up -d && open http://localhost:8000
 
-Monitor tor traffic:
+Monitor Tor traffic:
 
     docker-compose exec tor arm
 
