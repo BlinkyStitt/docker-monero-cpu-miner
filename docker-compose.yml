@@ -1,0 +1,50 @@
+version: '3'
+
+networks:
+  internal:
+    internal: true
+  external:
+    internal: false
+
+services:
+  tor:
+    image: bwstitt/tor-proxy
+    restart: always
+    expose:
+      - "9050/tcp"
+    networks:
+      - external
+      - internal
+
+  # TODO: parts of this are not behind Tor!
+  cpu_miner:
+    image: bwstitt/xmr-stak-cpu
+    restart: always
+    networks:
+      # TODO: remove this once we get the name resolution properly working
+      - external
+      # with the external network enabled, things (possibly only DNS) are leaking!
+      - internal
+    environment:
+      - LOGIN=bryan@stitthappens.com
+      - POOL=stratum+tcp://xdn-xmr.pool.minergate.com:45790
+      - TOR_HOSTNAME=tor
+      - USE_SLOW_MEMORY=warn
+    expose:
+      - "8000/tcp"
+    cap_add:
+      - IPC_LOCK
+
+  # with cpu_miner only on the internal network,
+  # we need a simple proxy to get to the dashboard
+  cpu_dashboard:
+    image: demandbase/docker-tcp-proxy
+    restart: always
+    networks:
+      - external
+      - internal
+    ports:
+      - "8000:8000/tcp"
+    environment:
+      - BACKEND_HOST=cpu_miner
+      - BACKEND_PORT=8000
