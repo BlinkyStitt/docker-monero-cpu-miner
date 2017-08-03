@@ -6,7 +6,7 @@ If you want to use this yourself, modify the POOL and LOGIN in the docker-compos
 
 **WARNING!** The miner isn't able to resolve DNS queries over Tor. I'm not actually sure how much is leaking. The external network should be removed from the cpu_miner container before this is actually used with the expectation of private mining.
 
-Usage:
+Usage on Mac/Linux:
 
     git clone https://github.com/WyseNynja/docker-monero-cpu-miner.git
 
@@ -14,9 +14,11 @@ Usage:
 
     # edit docker-compose.yaml to include your settings
     # TODO: use .env files?
-    $EDITOR docker-compose.yaml
+    $EDITOR docker-compose.yml
 
     docker-compose pull && docker-compose up -d && open http://localhost:8000
+
+This should also work on Windows, but I haven't tried it there.
 
 Monitor Tor traffic:
 
