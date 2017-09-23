@@ -1,10 +1,17 @@
-# Monero CPU Miner behind Tor
+# Monero CPU Miner
 
-Docker-compose file for running the xmr-stak-cpu miner (partly) behind Tor.
+Docker-compose file for running the xmr-stak-cpu miner. It is probably faster to run native code, but this makes it easy
 
-If you want to use this yourself, modify the POOL and LOGIN in the docker-compose file. See the [miner's entrypoint script](https://github.com/WyseNynja/xmr-stak-cpu/blob/master/docker-entrypoint.sh) for available settings.
+If you want to use this yourself, create a `.env` file next to this `docker-compose.yml` . See the [miner's entrypoint script](https://github.com/WyseNynja/xmr-stak-cpu/blob/master/docker-entrypoint.sh) for available settings. It should look something like this:
 
-**WARNING!** The miner isn't able to resolve DNS queries over Tor. I'm not actually sure how much is leaking. The external network should be removed from the cpu_miner container before this is actually used with the expectation of private mining.
+    LOGIN=4YOURMONEROADDRESSHERE...+1800
+    MAX_CPUS=1
+    PASS=yourcomputername
+    POOL=mine.xmrpool.net:443
+    USE_SLOW_MEMORY=warn
+    USE_TLS="true"
+
+Experiment with different share difficulties. 1800 works well for my 2011 MacBook Air. You want a share at least every 60 seconds on most pools.
 
 Usage on Mac/Linux:
 
@@ -12,16 +19,11 @@ Usage on Mac/Linux:
 
     cd docker-monero-cpu-miner
 
-    # edit docker-compose.yaml to include your settings
-    # TODO: use .env files?
-    $EDITOR docker-compose.yml
+    # set variables for your pool
+    $EDITOR .env
 
-    docker-compose pull && docker-compose up -d && open http://localhost:8000
+    docker-compose pull
+    docker-compose up -d
+    open http://localhost:8000
 
-This should also work on Windows, but I haven't tried it there.
-
-Monitor Tor traffic:
-
-    docker-compose exec tor arm
-
-NOTE: for even more anonymity, run docker-compose with torsocks, too
+This should also work on Windows, but I haven't tried it there. It probably won't be as fast as a native miner.
