@@ -26,11 +26,7 @@ services:
       # with the external network enabled, things (possibly only DNS) are leaking!
       - internal
     environment:
-      LOGIN: bryan@stitthappens.com
-      MAX_CPUS: 1
-      POOL: stratum+tcp://xdn-xmr.pool.minergate.com:45790
       TOR_HOSTNAME: tor
-      USE_SLOW_MEMORY: warn
     expose:
       - "8000/tcp"
     cap_add:
