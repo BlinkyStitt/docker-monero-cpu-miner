@@ -9,7 +9,7 @@ If you want to use this yourself, create a `cpu_miner.env` file next to this `do
     PASS=yourcomputername
     POOL=mine.xmrpool.net:443
     USE_SLOW_MEMORY=warn
-    USE_TLS="true"
+    USE_TLS=true
 
 Experiment with different share difficulties (or don't set any). 1800 works well for my 2011 MacBook Air. You want a share at least every 60 seconds on most pools.
 
