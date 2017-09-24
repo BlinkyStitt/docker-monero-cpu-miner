@@ -2,7 +2,7 @@
 
 Docker-compose file for running the xmr-stak-cpu miner. It is probably faster to run native code, but this makes it easy
 
-If you want to use this yourself, create a `.env` file next to this `docker-compose.yml` . See the [miner's entrypoint script](https://github.com/WyseNynja/xmr-stak-cpu/blob/master/docker-entrypoint.sh) for available settings. It should look something like this:
+If you want to use this yourself, create a `cpu_miner.env` file next to this `docker-compose.yml` . See the [miner's entrypoint script](https://github.com/WyseNynja/xmr-stak-cpu/blob/master/docker-entrypoint.sh) for available settings. It should look something like this:
 
     LOGIN=4YOURMONEROADDRESSHERE...+1800
     MAX_CPUS=1
@@ -11,7 +11,7 @@ If you want to use this yourself, create a `.env` file next to this `docker-comp
     USE_SLOW_MEMORY=warn
     USE_TLS="true"
 
-Experiment with different share difficulties. 1800 works well for my 2011 MacBook Air. You want a share at least every 60 seconds on most pools.
+Experiment with different share difficulties (or don't set any). 1800 works well for my 2011 MacBook Air. You want a share at least every 60 seconds on most pools.
 
 Usage on Mac/Linux:
 
