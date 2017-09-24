@@ -11,7 +11,7 @@ If you want to use this yourself, create a `cpu_miner.env` file next to this `do
     USE_SLOW_MEMORY=warn
     USE_TLS=true
 
-Experiment with different share difficulties (or don't set any). 1800 works well for my 2011 MacBook Air. You want a share at least every 60 seconds on most pools.
+Experiment with different share difficulties (or don't set any). 1100 works well for my 2011 MacBook Air because it is old and slow. Most pools require a share at least every 60 seconds.
 
 Usage on Mac/Linux:
 
@@ -20,7 +20,7 @@ Usage on Mac/Linux:
     cd docker-monero-cpu-miner
 
     # set variables for your pool
-    $EDITOR .env
+    $EDITOR cpu_miner.env
 
     docker-compose pull
     docker-compose up -d
